@@ -2,42 +2,40 @@ const knex = require("knex")(require("../knexfile"));
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { v4: uuidv4 } = require("uuid");
-const { readFileSync, writeFileSync } = require("fs");
+const { readFileSync } = require("fs");
 
 const signUp = async (req, res) => {
   try {
     const { username, name, email, password } = req.body;
 
     //check if the username or email has been registered
-    const foundUser = await knex("users").where(function () {
-      this.where({ username: username }).orWhere({ email: email });
-    });
-    if (foundUser) {
+    const foundUser = await knex("users")
+      .where({ username: username })
+      .orWhere({ email: email });
+
+    if (foundUser.length > 0) {
       //if the submitted username or email has been reserved
-      res
-        .json({
-          success: false,
-          message: "username/email is exist",
-        })
-        .sendStatus(401);
+      res.status(401).json({
+        success: false,
+        message: "username/email is exist",
+      });
+    } else {
+      const hash = await hashPassword(password); //hash password
+      const list = readFileSync("./data/defaultList.json"); //get default food list
+      //collect data in a obejct
+      const insert = {
+        username: username,
+        name: name,
+        email: email,
+        password: hash,
+        list: list,
+        record: "",
+      };
+      //store user's information
+      await knex("users").insert(insert);
+
+      res.status(201).json({ success: "true" });
     }
-
-    const hash = await hashPassword(password); //hash password
-    const userId = uuidv4();
-    const list = readFileSync("./data/defaultList.json"); //get default food list
-    //collect data in a obejct
-    const insert = {
-      username: username,
-      name: name,
-      email: email,
-      password: hash,
-      list: list,
-      id: userId,
-    };
-    //store user's information
-    await knex("users").insert(insert);
-
-    res.json({ success: "true" }).sendStatus(201);
   } catch (error) {
     console.log("Error sign up: ", error);
   }
@@ -48,9 +46,9 @@ const logIn = async (req, res) => {
     const { username, password } = req.body;
     const foundUser = await knex("users").where({
       username: username,
-    });//check if username is exist
-    if (foundUser) {
-      const match = verifyPassword(password, foundUser.password);//verify password
+    }); //check if username is exist
+    if (foundUser.length > 0) {
+      const match = await bcrypt.compare(password, foundUser[0].password); //verify password
       if (match) {
         const token = jwt.sign(
           {
@@ -61,10 +59,10 @@ const logIn = async (req, res) => {
         );
         res.json({ token: token });
       } else {
-        res.json("passowrd is wrong").sendStatus(401);
+        res.status(401).json("passowrd is wrong");
       }
     } else {
-      res.json("username/passowrd is wrong").sendStatus(401);
+      res.status(401).json("username is wrong");
     }
   } catch (error) {
     console.log("Error log in:", error);
@@ -76,28 +74,10 @@ const logIn = async (req, res) => {
 */
 const hashPassword = async (password) => {
   try {
-    const saltRounds = 5;
-    const salt = await bcrypt.genSalt(saltRounds);
-    const hashedPassword = await bcrypt.hash(password, salt);
-    return hashPassword;
+    const hashedPassword = await bcrypt.hash(password.toString(), 5);
+    return hashedPassword;
   } catch (error) {
     console.log("Error hashing password:", error);
-  }
-};
-
-/*
-  Function for comparing the submitted password and stored hash password 
-*/
-const verifyPassword = async (password, hash) => {
-  try {
-    const match = await bcrypt.compare(password, hash);
-    if (match) {
-      console.log("Passwords match!");
-    } else {
-      console.log("Passwords do not match!");
-    }
-  } catch (error) {
-    console.log("Error comparing passwords:", error);
   }
 };
 
@@ -115,4 +95,9 @@ const authenToken = (req, res, next) => {
     res.sendStatus(401);
     console.log(e);
   }
+};
+
+module.exports = {
+  signUp,
+  logIn,
 };
