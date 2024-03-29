@@ -4,6 +4,7 @@ const app = express();
 require("dotenv").config();
 
 const userRoute = require("./routes/user");
+const foodRoute = require("./routes/food");
 
 const PORT = process.env.PORT || 8080;
 
@@ -13,6 +14,7 @@ app.use(cors());
 
 //routes
 app.use("/users", userRoute);
+app.use(".foods", foodRoute);
 
 // Specific route for the font with an explicit MIME type
 app.get("/static/media/Quicksand-Regular.woff2", function (req, res) {

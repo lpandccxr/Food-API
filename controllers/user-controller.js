@@ -21,14 +21,14 @@ const signUp = async (req, res) => {
       });
     } else {
       const hash = await hashPassword(password); //hash password
-      const list = readFileSync("./data/defaultList.json"); //get default food list
+      const list = JSON.parse(readFileSync("./data/defaultList.json")); //get default food list
       //collect data in a obejct
       const insert = {
         username: username,
         name: name,
         email: email,
         password: hash,
-        list: list,
+        list: JSON.stringify(list),
         record: "",
       };
       //store user's information
@@ -62,10 +62,27 @@ const logIn = async (req, res) => {
         res.status(401).json("passowrd is wrong");
       }
     } else {
-      res.status(401).json("username is wrong");
+      res.status(401).json("username is not exist");
     }
   } catch (error) {
     console.log("Error log in:", error);
+  }
+};
+
+const getUserInfo = async (req, res) => {
+  try {
+    const foundUser = await knex("users").where({ userId: req.decoded.userId });
+    if (foundUser.length === 0) {
+      res.status(401).json("User not found");
+    } else {
+      res.status(200).json({
+        username: foundUser[0].username,
+        email: foundUser[0].email,
+        record: foundUser[0].record,
+      });
+    }
+  } catch (error) {
+    console.log("Get user info ", error);
   }
 };
 
@@ -100,4 +117,6 @@ const authenToken = (req, res, next) => {
 module.exports = {
   signUp,
   logIn,
+  getUserInfo,
+  authenToken,
 };

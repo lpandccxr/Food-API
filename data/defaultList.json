@@ -1,0 +1,734 @@
+[
+    {
+        "name": "Pho",
+        "country": "Vietnam"
+    },
+    {
+        "name": "Spicy soup noodle",
+        "country": "China"
+    },
+    {
+        "name": "Steak",
+        "country": "Various"
+    },
+    {
+        "name": "Sushi rolls",
+        "country": "Japan"
+    },
+    {
+        "name": "Dim sum",
+        "country": "China"
+    },
+    {
+        "name": "Poutine",
+        "country": "Canada"
+    },
+    {
+        "name": "Butter chicken",
+        "country": "India"
+    },
+    {
+        "name": "Ramen",
+        "country": "Japan"
+    },
+    {
+        "name": "Fish and chips",
+        "country": "United Kingdom"
+    },
+    {
+        "name": "Pad Thai",
+        "country": "Thailand"
+    },
+    {
+        "name": "Korean BBQ",
+        "country": "South Korea"
+    },
+    {
+        "name": "Tacos",
+        "country": "Mexico"
+    },
+    {
+        "name": "Pizza",
+        "country": "Italy"
+    },
+    {
+        "name": "Burger",
+        "country": "United States"
+    },
+    {
+        "name": "Poke bowl",
+        "country": "Hawaii"
+    },
+    {
+        "name": "Lobster roll",
+        "country": "United States"
+    },
+    {
+        "name": "Curry",
+        "country": "Various"
+    },
+    {
+        "name": "Bánh mì",
+        "country": "Vietnam"
+    },
+    {
+        "name": "Shawarma",
+        "country": "Middle East"
+    },
+    {
+        "name": "Salmon sashimi",
+        "country": "Japan"
+    },
+    {
+        "name": "Bibimbap",
+        "country": "South Korea"
+    },
+    {
+        "name": "Fried chicken",
+        "country": "United States"
+    },
+    {
+        "name": "Gyros",
+        "country": "Greece"
+    },
+    {
+        "name": "Hot pot",
+        "country": "China"
+    },
+    {
+        "name": "Brunch items",
+        "country": "Various"
+    },
+    {
+        "name": "Ribs",
+        "country": "United States"
+    },
+    {
+        "name": "Tempura",
+        "country": "Japan"
+    },
+    {
+        "name": "Mussels",
+        "country": "Various"
+    },
+    {
+        "name": "Pho ga",
+        "country": "Vietnam"
+    },
+    {
+        "name": "Vietnamese spring rolls",
+        "country": "Vietnam"
+    },
+    {
+        "name": "Beef bulgogi",
+        "country": "South Korea"
+    },
+    {
+        "name": "Noodle soups",
+        "country": "Various"
+    },
+    {
+        "name": "Caesar salad",
+        "country": "Canada"
+    },
+    {
+        "name": "Calamari",
+        "country": "Italy"
+    },
+    {
+        "name": "Perogies",
+        "country": "Poland"
+    },
+    {
+        "name": "Lamb kebab",
+        "country": "Middle East"
+    },
+    {
+        "name": "Fish tacos",
+        "country": "Mexico"
+    },
+    {
+        "name": "Vegetarian sushi rolls",
+        "country": "Japan"
+    },
+    {
+        "name": "Clam chowder",
+        "country": "United States"
+    },
+    {
+        "name": "Ramen burgers",
+        "country": "United States"
+    },
+    {
+        "name": "Paella",
+        "country": "Spain"
+    },
+    {
+        "name": "Bao buns",
+        "country": "China"
+    },
+    {
+        "name": "Pulled pork sandwiches",
+        "country": "United States"
+    },
+    {
+        "name": "Falafel",
+        "country": "Middle East"
+    },
+    {
+        "name": "Caesar salad",
+        "country": "Canada"
+    },
+    {
+        "name": "Oysters",
+        "country": "Various"
+    },
+    {
+        "name": "Tuna tartare",
+        "country": "Various"
+    },
+    {
+        "name": "Wonton soup",
+        "country": "China"
+    },
+    {
+        "name": "Lobster bisque",
+        "country": "France"
+    },
+    {
+        "name": "Crab cakes",
+        "country": "United States"
+    },
+    {
+        "name": "Quiche",
+        "country": "France"
+    },
+    {
+        "name": "Gnocchi",
+        "country": "Italy"
+    },
+    {
+        "name": "Cubano sandwich",
+        "country": "Cuba"
+    },
+    {
+        "name": "Shakshuka",
+        "country": "Middle East"
+    },
+    {
+        "name": "Empanadas",
+        "country": "Latin America"
+    },
+    {
+        "name": "Caesar salad with grilled chicken",
+        "country": "Canada"
+    },
+    {
+        "name": "Lobster mac and cheese",
+        "country": "United States"
+    },
+    {
+        "name": "Ahi tuna salad",
+        "country": "Hawaii"
+    },
+    {
+        "name": "Miso soup",
+        "country": "Japan"
+    },
+    {
+        "name": "Beef brisket",
+        "country": "United States"
+    },
+    {
+        "name": "Margherita pizza",
+        "country": "Italy"
+    },
+    {
+        "name": "Chicken tikka masala",
+        "country": "India"
+    },
+    {
+        "name": "Hawaiian poke",
+        "country": "Hawaii"
+    },
+    {
+        "name": "Buffalo wings",
+        "country": "United States"
+    },
+    {
+        "name": "Beef pho",
+        "country": "Vietnam"
+    },
+    {
+        "name": "Kimchi",
+        "country": "Korea"
+    },
+    {
+        "name": "Crab legs",
+        "country": "Various"
+    },
+    {
+        "name": "Chicken katsu",
+        "country": "Japan"
+    },
+    {
+        "name": "Caprese salad",
+        "country": "Italy"
+    },
+    {
+        "name": "Caesar salad with shrimp",
+        "country": "Canada"
+    },
+    {
+        "name": "Falafel wrap",
+        "country": "Middle East"
+    },
+    {
+        "name": "Beef rendang",
+        "country": "Indonesia"
+    },
+    {
+        "name": "Tandoori chicken",
+        "country": "India"
+    },
+    {
+        "name": "Peking duck",
+        "country": "China"
+    },
+    {
+        "name": "Baked brie",
+        "country": "France"
+    },
+    {
+        "name": "Chicken pot pie",
+        "country": "United Kingdom"
+    },
+    {
+        "name": "Lobster tail",
+        "country": "Various"
+    },
+    {
+        "name": "Nachos",
+        "country": "Mexico"
+    },
+    {
+        "name": "Peking pork ribs",
+        "country": "China"
+    },
+    {
+        "name": "Beef wellington",
+        "country": "United Kingdom"
+    },
+    {
+        "name": "Ceviche",
+        "country": "Peru"
+    },
+    {
+        "name": "Chicken and waffles",
+        "country": "United States"
+    },
+    {
+        "name": "Clam linguine",
+        "country": "Italy"
+    },
+    {
+        "name": "Pad see ew",
+        "country": "Thailand"
+    },
+    {
+        "name": "Prawn cocktail",
+        "country": "United Kingdom"
+    },
+    {
+        "name": "Escargot",
+        "country": "France"
+    },
+    {
+        "name": "Chicken quesadilla",
+        "country": "Mexico"
+    },
+    {
+        "name": "Beef stroganoff",
+        "country": "Russia"
+    },
+    {
+        "name": "Caprese sandwich",
+        "country": "Italy"
+    },
+    {
+        "name": "Crab Rangoon",
+        "country": "United States"
+    },
+    {
+        "name": "Teriyaki salmon",
+        "country": "Japan"
+    },
+    {
+        "name": "Chicken Caesar wrap",
+        "country": "Canada"
+    },
+    {
+        "name": "Beef burrito",
+        "country": "Mexico"
+    },
+    {
+        "name": "Cobb salad",
+        "country": "United States"
+    },
+    {
+        "name": "Chicken parmigiana",
+        "country": "Italy"
+    },
+    {
+        "name": "Beef teriyaki",
+        "country": "Japan"
+    },
+    {
+        "name": "Tuna melt",
+        "country": "United States"
+    },
+    {
+        "name": "Chicken shawarma wrap",
+        "country": "Middle East"
+    },
+    {
+        "name": "Seafood paella",
+        "country": "Spain"
+    },
+    {
+        "name": "Beef carpaccio",
+        "country": "Italy"
+    },
+    {
+        "name": "Croissant",
+        "country": "France"
+    },
+    {
+        "name": "Sushi",
+        "country": "Japan"
+    },
+    {
+        "name": "Hamburger",
+        "country": "United States"
+    },
+    {
+        "name": "Pasta Carbonara",
+        "country": "Italy"
+    },
+    {
+        "name": "Moussaka",
+        "country": "Greece"
+    },
+    {
+        "name": "Bratwurst",
+        "country": "Germany"
+    },
+    {
+        "name": "Tacos al Pastor",
+        "country": "Mexico"
+    },
+    {
+        "name": "Currywurst",
+        "country": "Germany"
+    },
+    {
+        "name": "Ceviche",
+        "country": "Peru"
+    },
+    {
+        "name": "Samosa",
+        "country": "India"
+    },
+    {
+        "name": "Falafel",
+        "country": "Middle East"
+    },
+    {
+        "name": "Poutine",
+        "country": "Canada"
+    },
+    {
+        "name": "Empanadas",
+        "country": "Latin America"
+    },
+    {
+        "name": "Goulash",
+        "country": "Hungary"
+    },
+    {
+        "name": "Peking Duck",
+        "country": "China"
+    },
+    {
+        "name": "Chimichanga",
+        "country": "Mexico"
+    },
+    {
+        "name": "Gyudon",
+        "country": "Japan"
+    },
+    {
+        "name": "Croque Monsieur",
+        "country": "France"
+    },
+    {
+        "name": "Mofongo",
+        "country": "Puerto Rico"
+    },
+    {
+        "name": "Haggis",
+        "country": "Scotland"
+    },
+    {
+        "name": "Kimchi",
+        "country": "Korea"
+    },
+    {
+        "name": "Baklava",
+        "country": "Turkey"
+    },
+    {
+        "name": "Fish and Chips",
+        "country": "United Kingdom"
+    },
+    {
+        "name": "Banh Mi",
+        "country": "Vietnam"
+    },
+    {
+        "name": "Gumbo",
+        "country": "United States"
+    },
+    {
+        "name": "Kebab",
+        "country": "Middle East"
+    },
+    {
+        "name": "Sauerbraten",
+        "country": "Germany"
+    },
+    {
+        "name": "Dolma",
+        "country": "Middle East"
+    },
+    {
+        "name": "Feijoada",
+        "country": "Brazil"
+    },
+    {
+        "name": "Ratatouille",
+        "country": "France"
+    },
+    {
+        "name": "Fried Chicken",
+        "country": "United States"
+    },
+    {
+        "name": "Tom Yum Goong",
+        "country": "Thailand"
+    },
+    {
+        "name": "Hummus",
+        "country": "Middle East"
+    },
+    {
+        "name": "Borscht",
+        "country": "Russia"
+    },
+    {
+        "name": "Bulgogi",
+        "country": "South Korea"
+    },
+    {
+        "name": "Schnitzel",
+        "country": "Austria"
+    },
+    {
+        "name": "Moules Frites",
+        "country": "Belgium"
+    },
+    {
+        "name": "Shepherd's Pie",
+        "country": "United Kingdom"
+    },
+    {
+        "name": "Beef Wellington",
+        "country": "United Kingdom"
+    },
+    {
+        "name": "Couscous",
+        "country": "North Africa"
+    },
+    {
+        "name": "Chicken Adobo",
+        "country": "Philippines"
+    },
+    {
+        "name": "Tiramisu",
+        "country": "Italy"
+    },
+    {
+        "name": "Churros",
+        "country": "Spain"
+    },
+    {
+        "name": "Fettuccine Alfredo",
+        "country": "Italy"
+    },
+    {
+        "name": "Pav Bhaji",
+        "country": "India"
+    },
+    {
+        "name": "Spanakopita",
+        "country": "Greece"
+    },
+    {
+        "name": "Katsu Curry",
+        "country": "Japan"
+    },
+    {
+        "name": "Nasi Goreng",
+        "country": "Indonesia"
+    },
+    {
+        "name": "Banoffee Pie",
+        "country": "United Kingdom"
+    },
+    {
+        "name": "Baba Ganoush",
+        "country": "Middle East"
+    },
+    {
+        "name": "Tacos de Carnitas",
+        "country": "Mexico"
+    },
+    {
+        "name": "Crepes",
+        "country": "France"
+    },
+    {
+        "name": "Pad Krapow",
+        "country": "Thailand"
+    },
+    {
+        "name": "Bakso",
+        "country": "Indonesia"
+    },
+    {
+        "name": "Tonkatsu",
+        "country": "Japan"
+    },
+    {
+        "name": "Biryani",
+        "country": "India"
+    },
+    {
+        "name": "Hainanese Chicken Rice",
+        "country": "Singapore"
+    },
+    {
+        "name": "Cevapi",
+        "country": "Balkans"
+    },
+    {
+        "name": "Coq au Vin",
+        "country": "France"
+    },
+    {
+        "name": "Fajitas",
+        "country": "Mexico"
+    },
+    {
+        "name": "Koshari",
+        "country": "Egypt"
+    },
+    {
+        "name": "Sarma",
+        "country": "Turkey"
+    },
+    {
+        "name": "Rendang",
+        "country": "Indonesia"
+    },
+    {
+        "name": "Lobster Roll",
+        "country": "United States"
+    },
+    {
+        "name": "Khachapuri",
+        "country": "Georgia"
+    },
+    {
+        "name": "Kare-Kare",
+        "country": "Philippines"
+    },
+    {
+        "name": "Pavlova",
+        "country": "New Zealand"
+    },
+    {
+        "name": "Pancakes",
+        "country": "Various"
+    },
+    {
+        "name": "Cordon Bleu",
+        "country": "France"
+    },
+    {
+        "name": "Jollof Rice",
+        "country": "West Africa"
+    },
+    {
+        "name": "Lomo Saltado",
+        "country": "Peru"
+    },
+    {
+        "name": "Laksa",
+        "country": "Malaysia"
+    },
+    {
+        "name": "Scotch Egg",
+        "country": "United Kingdom"
+    },
+    {
+        "name": "Cobb Salad",
+        "country": "United States"
+    },
+    {
+        "name": "Okonomiyaki",
+        "country": "Japan"
+    },
+    {
+        "name": "Mango Sticky Rice",
+        "country": "Thailand"
+    },
+    {
+        "name": "Ramen",
+        "country": "Japan"
+    },
+    {
+        "name": "Cachupa",
+        "country": "Cape Verde"
+    },
+    {
+        "name": "Cassoulet",
+        "country": "France"
+    },
+    {
+        "name": "Jerk Chicken",
+        "country": "Jamaica"
+    },
+    {
+        "name": "Chicken Parmesan",
+        "country": "Italy"
+    },
+    {
+        "name": "Chilli Crab",
+        "country": "Singapore"
+    },
+    {
+        "name": "Blini",
+        "country": "Russia"
+    }
+]

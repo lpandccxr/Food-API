@@ -7,4 +7,8 @@ router.route("/signup").post(userController.signUp);
 
 router.route("/login").post(userController.logIn);
 
+router
+  .route("/profile")
+  .post(userController.authenToken, userController.getUserInfo);
+
 module.exports = router;

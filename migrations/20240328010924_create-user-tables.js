@@ -9,8 +9,8 @@ exports.up = function (knex) {
     table.string("name").notNullable();
     table.string("email").notNullable().unique();
     table.string("password").notNullable();
-    table.string("list").notNullable();
-    table.string("record").notNullable();
+    table.text("list", "longtext").notNullable();
+    table.text("record", "mediumtext").notNullable();
     table.timestamps(true, true); // Adds 'created_at' and 'updated_at' columns
   });
 };
