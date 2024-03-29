@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { v4: uuidv4 } = require("uuid");
 const { readFileSync } = require("fs");
+const { use } = require("../routes/user");
 
 const signUp = async (req, res) => {
   try {
@@ -52,7 +53,7 @@ const logIn = async (req, res) => {
       if (match) {
         const token = jwt.sign(
           {
-            userId: foundUser.userId,
+            username: username,
           },
           process.env.SECRET_KEY,
           { expiresIn: "14d" }
@@ -71,7 +72,9 @@ const logIn = async (req, res) => {
 
 const getUserInfo = async (req, res) => {
   try {
-    const foundUser = await knex("users").where({ userId: req.decoded.userId });
+    const foundUser = await knex("users").where({
+      username: req.decoded.username,
+    });
     if (foundUser.length === 0) {
       res.status(401).json("User not found");
     } else {
@@ -83,6 +86,94 @@ const getUserInfo = async (req, res) => {
     }
   } catch (error) {
     console.log("Get user info ", error);
+  }
+};
+
+const addRecord = async (req, res) => {
+  try {
+    const foundUser = await knex("users").where({
+      username: req.decoded.username,
+    });
+    if (foundUser.length === 0) {
+      return res.status(401).json(`User ${req.decoded.username} is not found`);
+    }
+    let record = JSON.parse(foundUser[0].record);
+    const newRecord = {
+      name: req.body.name,
+      timestamp: Date.now().toString(),
+      id: uuidv4(),
+    };
+    record = [newRecord, ...record];
+    const update = await knex("users")
+      .where({
+        username: req.decoded.username,
+      })
+      .update({ record: JSON.stringify(record) });
+
+    if (update === 0) {
+      return res.status(401).json(`User ${req.decoded.username} is not found`);
+    }
+
+    res.status(201).json(newRecord);
+  } catch (error) {
+    console.log("Get user info ", error);
+  }
+};
+
+const addFood = async (req, res) => {
+  try {
+    const foundUser = await knex("users").where({
+      username: req.decoded.username,
+    });
+    if (foundUser.length === 0) {
+      return res.status(401).json(`User ${req.decoded.username} is not found`);
+    }
+    const list = JSON.parse(foundUser.list);
+    list.push({
+      name: req.body.name,
+      country: req.body.country,
+    });
+    const update = await knex("users")
+      .where({
+        username: req.decoded.username,
+      })
+      .update({ list: JSON.stringify(list) });
+
+    if (update === 0) {
+      return res.status(401).json(`User ${req.decoded.username} is not found`);
+    }
+
+    res.status(201).json(newRecord);
+  } catch (error) {
+    console.log("Add food: ", error);
+  }
+};
+
+const unlikeFood = async (req, res) => {
+  try {
+    const foundUser = await knex("users").where({
+      username: req.decoded.username,
+    });
+    if (foundUser.length === 0) {
+      return res.status(401).json(`User ${req.decoded.username} is not found`);
+    }
+    const list = JSON.parse(foundUser.list);
+
+    const newList = list.filter((food) => food.name !== req.body.name);
+    //remove food fromm list
+    const update = await knex("users")
+      .where({
+        username: req.decoded.username,
+      })
+      .update({ list: JSON.stringify(newList) });
+
+    if (update === 0) {
+      return res.status(401).json(`User ${req.decoded.username} is not found`);
+    }
+
+    res.status(201).json(`Remove food ${req.body.name} from food list`);
+  } catch (error) {
+    console.log("Add food: ", error);
   }
 };
 
@@ -119,4 +210,7 @@ module.exports = {
   logIn,
   getUserInfo,
   authenToken,
+  addRecord,
+  addFood,
+  unlikeFood,
 };
