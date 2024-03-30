@@ -128,22 +128,36 @@ const addFood = async (req, res) => {
     if (foundUser.length === 0) {
       return res.status(401).json(`User ${req.decoded.username} is not found`);
     }
-    const list = JSON.parse(foundUser.list);
-    list.push({
-      name: req.body.name,
-      country: req.body.country,
-    });
-    const update = await knex("users")
-      .where({
-        username: req.decoded.username,
-      })
-      .update({ list: JSON.stringify(list) });
 
-    if (update === 0) {
-      return res.status(401).json(`User ${req.decoded.username} is not found`);
+    const list = JSON.parse(foundUser[0].list);
+    const repeat = list.find(
+      (food) =>
+        food.name.localeCompare(req.body.name, "en", {
+          sensitivity: "base",
+        }) === 0
+    ); //check if the foodd is exist
+    if (repeat) {
+      return res.status(409).json(`${req.body.name} is exist in the list`); //if exist, response error
+    } else {
+      const newFood = {
+        name: req.body.name.charAt(0).toUpperCase() + req.body.name.slice(1),
+        country: req.body.country,
+      };
+      list.push(newFood);
+      const update = await knex("users")
+        .where({
+          username: req.decoded.username,
+        })
+        .update({ list: JSON.stringify(list) });
+
+      if (update === 0) {
+        return res
+          .status(401)
+          .json(`User ${req.decoded.username} is not found`);
+      }
+
+      res.status(201).json(newFood);
     }
-
-    res.status(201).json(newRecord);
   } catch (error) {
     console.log("Add food: ", error);
   }
@@ -157,7 +171,7 @@ const unlikeFood = async (req, res) => {
     if (foundUser.length === 0) {
       return res.status(401).json(`User ${req.decoded.username} is not found`);
     }
-    const list = JSON.parse(foundUser.list);
+    const list = JSON.parse(foundUser[0].list);
 
     const newList = list.filter((food) => food.name !== req.body.name);
     //remove food fromm list
