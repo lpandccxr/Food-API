@@ -3,6 +3,6 @@ const router = express.Router();
 
 const foodeController = require("../controllers/food-controller");
 
-router.route("/random/:username").get(foodeController.random);
+router.get("/random", foodeController.authenToken, foodeController.random);
 
 module.exports = router;

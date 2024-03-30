@@ -3,7 +3,6 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { v4: uuidv4 } = require("uuid");
 const { readFileSync } = require("fs");
-const { use } = require("../routes/user");
 
 const signUp = async (req, res) => {
   try {
@@ -100,6 +99,7 @@ const addRecord = async (req, res) => {
     let record = JSON.parse(foundUser[0].record);
     const newRecord = {
       name: req.body.name,
+      country: req.body.country,
       timestamp: Date.now().toString(),
       id: uuidv4(),
     };
@@ -207,9 +207,12 @@ const hashPassword = async (password) => {
 Middleware for authenticate token
 */
 const authenToken = (req, res, next) => {
-  const { authorization } = req.headers;
-  const token = authorization.slice("bearer ".length);
   try {
+    const { authorization } = req.headers;
+    if (!authorization) {
+      return res.sendStatus(401);
+    }
+    const token = authorization.slice("bearer ".length);
     const payload = jwt.verify(token, process.env.SECRET_KEY);
     req.decoded = payload;
     next();
