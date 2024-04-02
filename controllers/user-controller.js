@@ -8,34 +8,21 @@ const signUp = async (req, res) => {
   try {
     const { username, name, email, password } = req.body;
 
-    //check if the username or email has been registered
-    const foundUser = await knex("users")
-      .where({ username: username })
-      .orWhere({ email: email });
+    const hash = await hashPassword(password); //hash password
+    const list = JSON.parse(readFileSync("./data/defaultList.json")); //get default food list
+    //collect data in a obejct
+    const insert = {
+      username: username,
+      name: name,
+      email: email,
+      password: hash,
+      list: JSON.stringify(list),
+      record: "",
+    };
+    //store user's information
+    await knex("users").insert(insert);
 
-    if (foundUser.length > 0) {
-      //if the submitted username or email has been reserved
-      res.status(401).json({
-        success: false,
-        message: "username/email is exist",
-      });
-    } else {
-      const hash = await hashPassword(password); //hash password
-      const list = JSON.parse(readFileSync("./data/defaultList.json")); //get default food list
-      //collect data in a obejct
-      const insert = {
-        username: username,
-        name: name,
-        email: email,
-        password: hash,
-        list: JSON.stringify(list),
-        record: "",
-      };
-      //store user's information
-      await knex("users").insert(insert);
-
-      res.status(201).json({ success: "true" });
-    }
+    res.status(201).json({ success: "true" });
   } catch (error) {
     console.log("Error sign up: ", error);
   }
@@ -69,6 +56,50 @@ const logIn = async (req, res) => {
   }
 };
 
+const checkUsername = async (req, res) => {
+  try {
+    const { username } = req.params;
+
+    //check if the username or email has been registered
+    const foundUser = await knex("users").where({ username: username });
+
+    if (foundUser.length > 0) {
+      //if the submitted username or email has been reserved
+      res.json({
+        success: false,
+      });
+    } else {
+      res.json({
+        success: true,
+      });
+    }
+  } catch (error) {
+    console.log("Error at check username ", error);
+  }
+};
+
+const checkEmail = async (req, res) => {
+  try {
+    const { email } = req.params;
+
+    //check if the username or email has been registered
+    const foundUser = await knex("users").where({ email: email });
+
+    if (foundUser.length > 0) {
+      //if the submitted username or email has been reserved
+      res.json({
+        success: false,
+      });
+    } else {
+      res.json({
+        success: true,
+      });
+    }
+  } catch (error) {
+    console.log("Error at check email ", error);
+  }
+};
+
 const getUserInfo = async (req, res) => {
   try {
     const foundUser = await knex("users").where({
@@ -78,9 +109,10 @@ const getUserInfo = async (req, res) => {
       res.status(401).json("User not found");
     } else {
       res.status(200).json({
-        username: foundUser[0].username,
+        name: foundUser[0].name,
         email: foundUser[0].email,
         record: foundUser[0].record,
+        last_login: Date.now(),
       });
     }
   } catch (error) {
@@ -230,4 +262,6 @@ module.exports = {
   addRecord,
   addFood,
   unlikeFood,
+  checkEmail,
+  checkUsername,
 };

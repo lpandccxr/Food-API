@@ -6,13 +6,14 @@ const { default: axios } = require("axios");
 const random = async (req, res) => {
   let food = "";
   try {
-    if (!req.decoded) {
-      const list = JSON.parse(readFileSync("./data/defaultList.json")); //get default food list
-      const index = Math.floor(Math.random() * list.length);
-      food = list[index];
-    } else {
+    if (req.headers.Authorization) {
+      const { Authorization } = req.headers;
+      const token = Authorization.slice("bearer ".length);
+      const payload = jwt.verify(token, process.env.SECRET_KEY);
+
+      //get user's food list
       const foundUser = await knex("users").where({
-        username: req.decoded.username,
+        username: payload.username,
       });
       if (foundUser.length === 0) {
         return res
@@ -22,11 +23,18 @@ const random = async (req, res) => {
       const list = JSON.parse(foundUser[0].list);
       const index = Math.floor(Math.random() * list.length);
       food = list[index];
+    } else {
+      const list = JSON.parse(readFileSync("./data/defaultList.json")); //get default food list
+      const index = Math.floor(Math.random() * list.length);
+      food = list[index];
     }
-    const currentLocation = {
+    let currentLocation = {
       lat: 49.22729731035157,
       lng: -123.00006611882536,
-    };
+    }; //default location
+    if (req.body.location) {
+      currentLocation = req.body.location;
+    }
     const result = await search(
       food.name,
       `${currentLocation.lat},${currentLocation.lng}`
@@ -42,7 +50,7 @@ const random = async (req, res) => {
         };
       })
     );
-    res.status(200).json(response);
+    res.status(200).json({ ...food, restaurants: response });
   } catch (error) {
     console.log(error);
   }
@@ -85,27 +93,6 @@ const distance = async (current, destination) => {
   }
 };
 
-/*
-Middleware for authenticate token
-*/
-const authenToken = (req, res, next) => {
-  try {
-    const { authorization } = req.headers;
-    if (!authorization) {
-      next();
-    } else {
-      const token = authorization.slice("bearer ".length);
-      const payload = jwt.verify(token, process.env.SECRET_KEY);
-      req.decoded = payload;
-      next();
-    }
-  } catch (e) {
-    res.sendStatus(401);
-    console.log(e);
-  }
-};
-
 module.exports = {
   random,
-  authenToken,
 };
