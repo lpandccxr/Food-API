@@ -131,7 +131,6 @@ const addRecord = async (req, res) => {
     let record = JSON.parse(foundUser[0].record);
     const newRecord = {
       name: req.body.name,
-      country: req.body.country,
       timestamp: Date.now().toString(),
       id: uuidv4(),
     };
@@ -160,13 +159,14 @@ const addFood = async (req, res) => {
     if (foundUser.length === 0) {
       return res.status(401).json(`User ${req.decoded.username} is not found`);
     }
-
     const list = JSON.parse(foundUser[0].list);
     const repeat = list.find(
       (food) =>
-        food.name.localeCompare(req.body.name, "en", {
-          sensitivity: "base",
-        }) === 0
+        food.name
+          .replace(/ /g, "")
+          .localeCompare(req.body.name.replace(/ /g, ""), "en", {
+            sensitivity: "base",
+          }) === 0
     ); //check if the foodd is exist
     if (repeat) {
       return res.status(409).json(`${req.body.name} is exist in the list`); //if exist, response error
@@ -205,7 +205,14 @@ const unlikeFood = async (req, res) => {
     }
     const list = JSON.parse(foundUser[0].list);
 
-    const newList = list.filter((food) => food.name !== req.body.name);
+    const name = req.params.name;
+    if (name.length <= 0) {
+      return res.status(400).json(`Food name is empty`);
+    }
+    if (!list.find((food) => food.name === name)) {
+      return res.status(400).json(`No ${name} in your list`);
+    }
+    const newList = list.filter((food) => food.name !== name);
     //remove food fromm list
     const update = await knex("users")
       .where({
@@ -217,7 +224,7 @@ const unlikeFood = async (req, res) => {
       return res.status(401).json(`User ${req.decoded.username} is not found`);
     }
 
-    res.status(201).json(`Remove food ${req.body.name} from food list`);
+    res.status(201).json(`Remove food ${name} from food list`);
   } catch (error) {
     console.log("Add food: ", error);
   }

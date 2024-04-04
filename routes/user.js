@@ -18,7 +18,7 @@ router.put("/add-record", userController.authenToken, userController.addRecord);
 router.put("/add-food", userController.authenToken, userController.addFood);
 
 router.delete(
-  "/unlike-food",
+  "/unlike-food/:name",
   userController.authenToken,
   userController.unlikeFood
 );
